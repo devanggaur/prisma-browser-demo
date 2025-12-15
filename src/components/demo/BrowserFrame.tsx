@@ -201,6 +201,86 @@ export function BrowserFrame({
               <span className="text-xs font-semibold text-panw-orange whitespace-nowrap">SECURED</span>
             </div>
           )}
+
+          {/* Settings Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="p-2 rounded-lg hover:bg-muted transition-colors">
+                <Settings className="w-4 h-4 text-muted-foreground" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-80">
+              <DropdownMenuLabel className="flex items-center gap-2">
+                <Settings className="w-4 h-4" />
+                Security Settings
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+
+              {/* Financial Fraud Protection */}
+              <div className="p-3 space-y-2">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10 mt-0.5">
+                    <Shield className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-medium">Financial Fraud Protection</h4>
+                      <Switch
+                        checked={fraudProtection}
+                        onCheckedChange={onFraudProtectionChange}
+                      />
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      Detect suspicious invoice changes and verify bank account modifications
+                    </p>
+                    <span className="text-xs text-muted-foreground">
+                      Status: <span className={cn("font-medium", fraudProtection ? "text-palo-green" : "text-muted-foreground")}>
+                        {fraudProtection ? "Active" : "Disabled"}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <DropdownMenuSeparator />
+
+              {/* Strict Payroll Lock */}
+              <div className="p-3 space-y-2">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10 mt-0.5">
+                    <Shield className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-medium">Strict Payroll Lock</h4>
+                      <Switch
+                        checked={payrollLock}
+                        onCheckedChange={onPayrollLockChange}
+                      />
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      Require biometric authentication before modifying banking information
+                    </p>
+                    <span className="text-xs text-muted-foreground">
+                      Status: <span className={cn("font-medium", payrollLock ? "text-palo-green" : "text-muted-foreground")}>
+                        {payrollLock ? "Active" : "Disabled"}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Profile Avatar */}
+          <div className="flex items-center gap-2">
+            <img
+              src="https://i.pravatar.cc/150?img=47"
+              alt="Sarah"
+              className="w-8 h-8 rounded-full object-cover border-2 border-white/20"
+            />
+            <span className="text-sm font-medium text-foreground">Sarah</span>
+          </div>
         </div>
       </div>
 
