@@ -14,7 +14,7 @@ function createWindow() {
     height: 900,
     minWidth: 1200,
     minHeight: 700,
-    titleBarStyle: 'hiddenInset',
+    title: '',
     backgroundColor: '#F8FAFC',
     webPreferences: {
       nodeIntegration: false,
@@ -25,7 +25,8 @@ function createWindow() {
 
   // Show window when ready to avoid flash
   mainWindow.once('ready-to-show', () => {
-    mainWindow.show();
+    mainWindow.maximize(); // Maximize window
+    mainWindow.show(); // Then show it
   });
 
   // In development, load from Vite dev server
@@ -35,14 +36,10 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
   } else {
     // In production, load the built files
-    const indexPath = app.isPackaged
-      ? path.join(process.resourcesPath, 'dist/index.html')
-      : path.join(__dirname, '../dist/index.html');
+    // __dirname works correctly in both asar and unpacked scenarios
+    const indexPath = path.join(__dirname, '../dist/index.html');
     mainWindow.loadFile(indexPath);
   }
-
-  // Remove default menu bar for cleaner browser-like experience
-  mainWindow.setMenuBarVisibility(false);
 }
 
 // This method will be called when Electron has finished initialization
